@@ -12,6 +12,6 @@ Array.prototype.equals = function (array) {
 };
 
 const arr = [4, 5, 6, 7, 8];
-const arr2 = [4, 5, 6, 7, 8, 1];
+const arr2 = [4, 5, 6, 7, 8];
 console.log(arr === arr2); // false
 console.log(arr.equals(arr2)); // true
