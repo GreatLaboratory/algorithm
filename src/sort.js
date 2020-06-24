@@ -77,19 +77,19 @@ const byungHab = (arr) => {
     if (arr.length <= 1) return arr;
     
     // 분할 코드
-    const middleIndex = parseInt(arr.length / 2);
+    const middleIndex = Math.floor(arr.length / 2);
     let firstArr = byungHab(arr.slice(0, middleIndex));
     let secondArr = byungHab(arr.slice(middleIndex, ));
     
     // 정복 코드
-    while (firstArr.length !== 0 && secondArr.length !== 0) {
+    while (firstArr.length && secondArr.length) {
         if (firstArr[0] < secondArr[0]) result.push(firstArr.shift());
         else result.push(secondArr.shift());
     }
-    while (firstArr.length !== 0) {
+    while (firstArr.length) { // 여기서 firstArr은 이미 정렬된 배열이라 비교없이 그냥 인덱스 0부터 순서대로 넣는다.
         result.push(firstArr.shift());
     }
-    while (secondArr.length !== 0) {
+    while (secondArr.length) { // 여기서 secondArr은 이미 정렬된 배열이라 비교없이 그냥 인덱스 0부터 순서대로 넣는다.
         result.push(secondArr.shift());
     }
 
@@ -100,14 +100,14 @@ console.log(byungHab([4, 9, 6, 11, 444, 85, 22])); // [ 4, 6, 9, 11, 22, 85, 444
 
 // 퀵정렬
 const quick = (arr) => {
-    const length = arr.length;
-    if (length <= 1) return arr;
-    const standard = [arr.shift()];
+    if (arr.length <= 1) return arr;
+
+    const standard = arr.shift();
     const firstArr = [];
     const secondArr = [];
     
     for (const i in arr) {
-        if (arr[i] < standard[0]) firstArr.push(arr[i]);
+        if (arr[i] < standard) firstArr.push(arr[i]);
         else secondArr.push(arr[i]);
     }
     return quick(firstArr).concat(standard, quick(secondArr));
